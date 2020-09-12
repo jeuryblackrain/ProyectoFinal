@@ -1,0 +1,50 @@
+﻿@model Mantenimiento.Models.Articulo
+
+@{
+    ViewBag.Title = "RentarArticulo";
+}
+
+<h2 style="text-align:center">Detalles del Articulo a Rentar</h2>
+
+<h3>Es este el articulo que desea Rentar?</h3>
+<div>
+    <h4>Articulo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+      
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Rentar Articulo" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar a la Lista de Articulos", "Index")
+        </div>
+    }
+</div>

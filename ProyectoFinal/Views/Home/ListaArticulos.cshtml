@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Mantenimiento.Models.Articulo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center">Lista de Articulos  Disponibles para Alquilar</h2>
+
+<div class="row">
+
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-10">
+        <input id="buscar" type="text" name="serach" placeholder="Busqueda por nombre..." class="form-control" />
+    </div>
+</div>
+
+
+<div class="container mt-4">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class="card img-rounded">
+                    <div class="card-header text-center">
+                        <h3 class="col-sm-12">@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                    </div>
+                    <div class="card-body text-center" >
+                        <i class="glyphicon glyphicon-usd font-family:Arialfont-family:Arial">@Html.DisplayFor(modelItem => item.Precio)</i>
+                        <img src="~/Images/@item.Imagen" width="200" height="180" />
+                    </div>
+                    <div class="card-footer">
+                        <div class="col-sm-12">
+                        <label>@Html.DisplayFor(modelItem => item.Descripcion)</label>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <a class="btn btn-primary glyphicon glyphicon-plus"> Agregar al carrito</a>
+                            <a class="btn btn-danger glyphicon glyphicon-shopping-cart"> Rentar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    }
+                </div>
+            </div>
+
+            @section scripts
+    {
+                <script>
+                    $(document).ready(function () {
+                        $("#buscar").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#container container").filter(function () {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > 1)
+                            });
+                        });
+                    });
+                </script>
+            }
