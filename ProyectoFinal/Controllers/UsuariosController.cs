@@ -5,128 +5,117 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using Mantenimiento.Models;
 
 namespace ProyectoFinal.Controllers
 {
-    public class ArticulosController : Controller
+    public class UsuariosController : Controller
     {
         private DBRestauranteEntities db = new DBRestauranteEntities();
 
-        // GET: Articulos
+        // GET: Usuarios
         public ActionResult Index()
         {
-            return View(db.Articuloes.ToList().Where(x => x.Estado == true));
+            var usuarios = db.Usuarios.Include(u => u.TipoUsuario1);
+            return View(usuarios.ToList());
         }
 
-        public ActionResult ArticulosRentados()
-        {
-
-            return View(db.Articuloes.ToList().Where(x => x.Estado == false));
-        }
-
-
-
-        // GET: Articulos/Details/5
+        // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articulo articulo = db.Articuloes.Find(id);
-            if (articulo == null)
+            Usuario usuario = db.Usuarios.Find(id);
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(articulo);
+            return View(usuario);
         }
 
-        // GET: Articulos/Create
+        // GET: Usuarios/Create
         public ActionResult Create()
         {
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "IdTipoUsuario", "Descripcion");
             return View();
         }
 
-        // POST: Articulos/Create
+        // POST: Usuarios/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ArticuloID,Nombre,Descripcion,Precio,Estado,Imagen")] Articulo articulo, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "IdUsuario,Nombre,Apellido,Usuario1,Password,Email,TipoUsuario")] Usuario usuario)
         {
-            if (file != null)
+            if (ModelState.IsValid)
             {
-                    string ImageName = System.IO.Path.GetFileName(file.FileName);
-                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
-                    file.SaveAs(physicalPath);
-
-                    if (ModelState.IsValid)
-                        {
-                             articulo.Imagen = ImageName;
-                            db.Articuloes.Add(articulo);
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
-                        }
+                db.Usuarios.Add(usuario);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-                return View(articulo);
+
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "IdTipoUsuario", "Descripcion", usuario.TipoUsuario);
+            return View(usuario);
         }
 
-        // GET: Articulos/Edit/5
+        // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articulo articulo = db.Articuloes.Find(id);
-            if (articulo == null)
+            Usuario usuario = db.Usuarios.Find(id);
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(articulo);
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "IdTipoUsuario", "Descripcion", usuario.TipoUsuario);
+            return View(usuario);
         }
 
-        // POST: Articulos/Edit/5
+        // POST: Usuarios/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ArticuloID,Nombre,Descripcion,Precio,Estado")] Articulo articulo)
+        public ActionResult Edit([Bind(Include = "IdUsuario,Nombre,Apellido,Usuario1,Password,Email,TipoUsuario")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(articulo).State = EntityState.Modified;
+                db.Entry(usuario).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(articulo);
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "IdTipoUsuario", "Descripcion", usuario.TipoUsuario);
+            return View(usuario);
         }
 
-        // GET: Articulos/Delete/5
+        // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articulo articulo = db.Articuloes.Find(id);
-            if (articulo == null)
+            Usuario usuario = db.Usuarios.Find(id);
+            if (usuario == null)
             {
                 return HttpNotFound();
             }
-            return View(articulo);
+            return View(usuario);
         }
 
-        // POST: Articulos/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Articulo articulo = db.Articuloes.Find(id);
-            db.Articuloes.Remove(articulo);
+            Usuario usuario = db.Usuarios.Find(id);
+            db.Usuarios.Remove(usuario);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

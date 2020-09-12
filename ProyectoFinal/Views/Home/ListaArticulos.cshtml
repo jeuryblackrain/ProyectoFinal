@@ -4,16 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2 style="text-align:center">Lista de Articulos  Disponibles para Alquilar</h2>
+<h2 style="text-align:center">Catalogo de Articulos</h2>
 
-<div class="row">
-
-    <div class="col-sm-2">
-    </div>
-    <div class="col-sm-10">
-        <input id="buscar" type="text" name="serach" placeholder="Busqueda por nombre..." class="form-control" />
-    </div>
-</div>
 
 
 <div class="container mt-4">
@@ -36,26 +28,14 @@
                         </div>
                         <div class="col-sm-12 text-center">
                             <a class="btn btn-primary glyphicon glyphicon-plus"> Agregar al carrito</a>
-                            <a class="btn btn-danger glyphicon glyphicon-shopping-cart"> Rentar</a>
+                            @Html.ActionLink(" Rentar", "RentarArticulo", new { id = item.ArticuloID }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-shopping-cart" })
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-                    }
+                 }
                 </div>
             </div>
 
-            @section scripts
-    {
-                <script>
-                    $(document).ready(function () {
-                        $("#buscar").on("keyup", function () {
-                            var value = $(this).val().toLowerCase();
-                            $("#container container").filter(function () {
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > 1)
-                            });
-                        });
-                    });
-                </script>
-            }
+   

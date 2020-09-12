@@ -7,7 +7,10 @@
       <Diagram DiagramId="5896af7b1cf54f8384b8a962642f8589" Name="Diagram1">
         <EntityTypeShape EntityType="DBRestauranteModel.Cliente" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="DBRestauranteModel.Articulo" Width="1.5" PointX="0.75" PointY="0.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="DBRestauranteModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="DBRestauranteModel.Usuario" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="DBRestauranteModel.FK_Usuarios_TipoUsuario" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

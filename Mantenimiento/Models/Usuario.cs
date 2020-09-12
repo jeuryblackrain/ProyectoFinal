@@ -13,18 +13,20 @@ namespace Mantenimiento.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Cliente
+    public partial class Usuario
     {
-        public int IdCliente { get; set; }
+        public int IdUsuario { get; set; }
         [Required]
         public string Nombre { get; set; }
         [Required]
         public string Apellido { get; set; }
         [Required]
-        public string Direccion { get; set; }
+        public string Usuario1 { get; set; }
         [Required]
-        public string Telefefono { get; set; }
-        [Required]
+        public string Password { get; set; }
         public string Email { get; set; }
+        public int TipoUsuario { get; set; }
+    
+        public virtual TipoUsuario TipoUsuario1 { get; set; }
     }
 }

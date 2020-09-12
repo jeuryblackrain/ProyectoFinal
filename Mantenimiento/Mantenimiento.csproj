@@ -71,6 +71,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RestauranteDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoUsuario.cs">
+      <DependentUpon>RestauranteDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>RestauranteDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Alquiler de Articulos De Restaurantes</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -26,6 +27,7 @@
                     <li class="nav dropdown">@Html.ActionLink(" Clientes", "Index", "Clientes", null, new { @class = "glyphicon glyphicon-user" })</li>
                     <li>@Html.ActionLink(" Contacto", "Contact", "Home", null, new { @class = "glyphicon glyphicon-phone-alt" })</li>
                     <li>@Html.ActionLink(" ", "Carrito", "Home", htmlAttributes: new { @class = "glyphicon glyphicon-shopping-cart",@style="color: darkorange" })</li>
+                   
                 </ul>
             </div>
         </div>

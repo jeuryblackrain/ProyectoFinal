@@ -27,5 +27,7 @@ namespace Mantenimiento.Models
     
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Articulo> Articuloes { get; set; }
+        public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

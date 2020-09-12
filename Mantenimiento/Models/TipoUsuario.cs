@@ -11,19 +11,19 @@ namespace Mantenimiento.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Articulo
+    
+    public partial class TipoUsuario
     {
-        public int ArticuloID { get; set; }
-        [Required]
-        public string Nombre { get; set; }
-        [Required]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TipoUsuario()
+        {
+            this.Usuarios = new HashSet<Usuario>();
+        }
+    
+        public int IdTipoUsuario { get; set; }
         public string Descripcion { get; set; }
-        [Required]
-        public string Precio { get; set; }
-        [Required]
-        public Nullable<bool> Estado { get; set; }
-        public string Imagen { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }
